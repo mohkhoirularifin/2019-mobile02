@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 	//  TODO: deklarasikan variabel di sini
 	int random, guess;
 	private EditText masukkanAngka;
+	private Button tombol;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 		// TODO: bind layout di sini
         masukkanAngka = findViewById((R.id.number_input);
+        tombol = findViewById(R.id.guess_button);
 	}
 
 	// TODO: generate angka random di sini
@@ -29,10 +31,25 @@ public class MainActivity extends AppCompatActivity {
 //		random = (int) (Math.random()*100);
 		Random random = new Random();
 		int rando = random.nextInt(101);
+		int rando = random.nextInt(3);
 	}
 
 	public void handleGuess(View view) {
 		// TODO: Tambahkan logika untuk melakukan pengecekan angka
+        Random rando = new Random();
+        int value = rando.nextInt(101);
+        String sIn = masukkanAngka.getText().toString();
+        int     in = Integer.parseInt(sIn);
+                if (in > value){
+                    Toast.makeText(this, "Tebakan anda terlalu besar", Toast.LENGTH_SHORT).show();
+                }
+                else if(in < value){
+                    Toast.makeText(this, "Tebakan anda terlalu kecil", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(this, "Tebakan anda benar", Toast.LENGTH_SHORT).show();
+                }
+
 	}
 
 	public void handleReset(View view) {
