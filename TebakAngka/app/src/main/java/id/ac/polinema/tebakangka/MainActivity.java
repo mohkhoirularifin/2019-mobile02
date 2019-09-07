@@ -13,7 +13,8 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
 	//  TODO: deklarasikan variabel di sini
-	int random, guess;
+//	int random, guess;
+	private int random;
 	private EditText masukkanAngka;
 	private Button tombol;
 
@@ -26,24 +27,31 @@ public class MainActivity extends AppCompatActivity {
         tombol = findViewById(R.id.guess_button);
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		initRandomNumber();
+	}
+
 	// TODO: generate angka random di sini
 	private void initRandomNumber() {
 //		random = (int) (Math.random()*100);
 		Random random = new Random();
 //		int rando = random.nextInt(101);
-		int rando = random.nextInt(3);
+//		int rando = random.nextInt(4);
+		int rando = random.nextInt(6);
+		this.random = rando;
 	}
 
 	public void handleGuess(View view) {
 		// TODO: Tambahkan logika untuk melakukan pengecekan angka
-        Random rando = new Random();
-        int value = rando.nextInt(101);
+		tombol.setEnabled(false);
         String sIn = masukkanAngka.getText().toString();
         int     in = Integer.parseInt(sIn);
-                if (in > value){
+                if (in > random){
                     Toast.makeText(this, "Tebakan anda terlalu besar", Toast.LENGTH_SHORT).show();
                 }
-                else if(in < value){
+                else if(in < random){
                     Toast.makeText(this, "Tebakan anda terlalu kecil", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -54,5 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
 	public void handleReset(View view) {
 		// TODO: Reset tampilan
+		masukkanAngka.setText("");
+		tombol.setEnabled(true);
+		initRandomNumber();
 	}
 }
