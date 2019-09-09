@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 	private void initRandomNumber() {
 //		random = (int) (Math.random()*100);
 		Random random = new Random();
-//		int rando = random.nextInt(101);
+		int rando = random.nextInt(101);
 //		int rando = random.nextInt(4);
-		int rando = random.nextInt(6);
+//		int rando = random.nextInt(6);
 		this.random = rando;
 	}
 
